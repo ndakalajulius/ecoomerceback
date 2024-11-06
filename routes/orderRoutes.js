@@ -7,3 +7,5 @@ router.post('/', auth, createOrder);
 router.get('/', auth, getUserOrders);
 
 module.exports = router;
+
+router.put('/:id/status', auth, admin, updateOrderStatus);
