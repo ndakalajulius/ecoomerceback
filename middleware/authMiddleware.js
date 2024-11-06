@@ -12,5 +12,14 @@ const auth = (req, res, next) => {
     res.status(401).json({ message: 'Token is not valid' });
   }
 };
+function admin(req, res, next) {
+  // Check if the authenticated user has admin role
+  if (!req.user.isAdmin) {
+    return res.status(403).send('Access denied. Admins only.');
+  }
+  next();
+}
 
-module.exports = auth;
+
+module.exports = { auth, admin };
+

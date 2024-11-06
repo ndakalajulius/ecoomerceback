@@ -1,9 +1,13 @@
+// productRoutes.js
 const express = require('express');
-const { getAllProducts, createProduct } = require('../controllers/productController');
-const auth = require('../middleware/authMiddleware');
 const router = express.Router();
+const { auth } = require('../middleware/authMiddleware'); // Destructuring to get `auth`
+const { createProduct, getAllProducts } = require('../controllers/productController');
 
-router.get('/', getAllProducts);
-router.post('/', auth, createProduct);
+// GET all products
+router.get("/", getAllProducts);
+
+// POST to create a product (requires auth)
+router.post("/", auth, createProduct);
 
 module.exports = router;
